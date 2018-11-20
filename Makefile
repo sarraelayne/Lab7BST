@@ -1,4 +1,8 @@
-main: main.cpp BST.h BSTInterface.h NodeInterface.h
-	g++ -std=c++11 main.cpp -o main
-debugged: main.cpp
-	g++ -std=c++11 main.cpp -o debugged -g
+
+CC = g++
+CCFLAGS = -std=c++11 -g
+bst: main.cpp BSTInterface.h NodeInterface.h BST.h BST.cpp Node.h 
+	$(CC) $(CCFLAGS) -o bst main.cpp BST.cpp Node.cpp
+
+
+

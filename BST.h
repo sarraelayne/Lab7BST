@@ -1,56 +1,45 @@
 #pragma once
 #include "BSTInterface.h"
-#include <iostream>
+#include "Node.h"
 
-using namespace std;
-
-class BST: public BSTInterface {
-    
+class BST : public BSTInterface {
 public:
-	BSTInterface() {}
-	~BSTInterface() {}
+	BST() { root = NULL;}
+	virtual ~BST() {}
 
-	NodeInterface * getRootNode() {
-	    return T;
-	}
-	bool add(int data) {
-		if (T == NULL) {
-	        T = new Node(data);
-	        return true;
-	    }
-	    if (T->value =< data) {
-	        return false;
-	    }
-	    if (data < T->value) {
-	        return insert(T->left, data);
-	    }
-	    else {
-	        return insert(T->right, data);
-	    } 
-	}
-	bool remove(int data) {
-	    if (T == NULL) {
-        	return false;6
-	    }
-	    if (T->value == data) {
-	        do the delete;
-	    }
-	    if (T->value > data) {
-	        return remove(T->left, data);
-	    }
-	    else {
-	        return remove(T->right, data);
-	    }
-	}
-	void clear() {
-	    if (T has no children) {
-		    delete T;
-		    T = NULL;
-		}
-		else if (T->left == NULL) {
-		    Node *posterity = T->right;
-		    delete T;
-		    T = posterity;
-		}
-	}
+	//Please note that the class that implements this interface must be made
+	//of objects which implement the NodeInterface
+
+	/*
+	* Returns the root node for this tree
+	*
+	* @return the root node for this tree.
+	*/
+	NodeInterface * getRootNode() const;
+
+	/*
+	* Attempts to add the given int to the BST tree
+	*
+	* @return true if added
+	* @return false if unsuccessful (i.e. the int is already in tree)
+	*/
+	bool add(int data);
+
+	/*
+	* Attempts to remove the given int from the BST tree
+	*
+	* @return true if successfully removed
+	* @return false if remove is unsuccessful(i.e. the int is not in the tree)
+	*/
+	bool remove(int data);
+	bool erase(Node *&T);
+	/*
+	* Removes all nodes from the tree, resulting in an empty tree.
+	*/
+	void clear();
+	void find(Node &T, int val);
+	bool insert(Node *&T, int val);
+protected:
+	Node *root;
+	Node *T;
 };
