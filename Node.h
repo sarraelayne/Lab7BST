@@ -1,11 +1,20 @@
 #pragma once
 #include "NodeInterface.h"
+#include <iostream>
 using namespace std;
 
 class Node : public NodeInterface {
 	friend class BST; // Allow BST to access data members
 public:
-	Node(int value) {data = value;leftChild = NULL; rightChild = NULL;}
+	Node *leftChild;
+	Node *rightChild;
+	int val;
+	
+	Node(int value) {
+		val = value;
+		leftChild = NULL; 
+		rightChild = NULL;
+	}
 	~Node() {}
 
 	/*
@@ -13,27 +22,25 @@ public:
 	*
 	* @return the data that is stored in this node.
 	*/
-	int getData() const;
+	int getData() const {
+		return val;
+	}
 
 	/*
 	* Returns the left child of this node or null if it doesn't have one.
 	*
 	* @return the left child of this node or null if it doesn't have one.
 	*/
-	NodeInterface * getLeftChild() const;
+	NodeInterface * getLeftChild() const {
+		return leftChild;
+	}
 
 	/*
 	* Returns the right child of this node or null if it doesn't have one.
 	*
 	* @return the right child of this node or null if it doesn't have one.
 	*/
-	NodeInterface * getRightChild() const;
-	void setLeftChild(Node *ptr);
-	void setRightChild(Node *ptr);
-	
-protected:
-	Node *leftChild;
-	Node *rightChild;
-	int data;
-	int value;
+	NodeInterface * getRightChild() const {
+		return rightChild;
+	}
 };

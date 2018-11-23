@@ -1,11 +1,14 @@
 #pragma once
 #include "BSTInterface.h"
+#include "NodeInterface.h"
 #include "Node.h"
 
 class BST : public BSTInterface {
 public:
-	BST() { root = NULL;}
-	virtual ~BST() {}
+	Node* root;
+	Node* T;
+	BST();
+	~BST();
 
 	//Please note that the class that implements this interface must be made
 	//of objects which implement the NodeInterface
@@ -23,7 +26,7 @@ public:
 	* @return true if added
 	* @return false if unsuccessful (i.e. the int is already in tree)
 	*/
-	bool add(int data);
+	bool add(int val);
 
 	/*
 	* Attempts to remove the given int from the BST tree
@@ -31,15 +34,13 @@ public:
 	* @return true if successfully removed
 	* @return false if remove is unsuccessful(i.e. the int is not in the tree)
 	*/
-	bool remove(int data);
-	bool erase(Node *&T);
+	bool remove(int val);
 	/*
 	* Removes all nodes from the tree, resulting in an empty tree.
 	*/
 	void clear();
-	void find(Node &T, int val);
 	bool insert(Node *&T, int val);
-protected:
-	Node *root;
-	Node *T;
+	bool removeNode(Node *&T, int val);
+	int traverseTree(Node* T);
+	void deleteNodes(Node *T);
 };
